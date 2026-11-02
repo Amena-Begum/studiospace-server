@@ -88,8 +88,8 @@ const HOST_ACTIONS: Record<string, { from: string[]; to: string }> = {
 };
 
 router.patch("/:id/status", requireAuth, async (req, res) => {
-  if (!ObjectId.isValid(req.params.id)) return res.status(404).json({ message: "Booking not found." });
-  const _id = new ObjectId(req.params.id);
+  if (!ObjectId.isValid(String(req.params.id))) return res.status(404).json({ message: "Booking not found." });
+  const _id = new ObjectId(String(req.params.id));
   const db = await getDb();
   const booking = await db.collection("bookings").findOne({ _id });
   if (!booking) return res.status(404).json({ message: "Booking not found." });

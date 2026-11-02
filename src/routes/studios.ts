@@ -55,7 +55,7 @@ router.get("/mine", requireAuth, async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const _id = parseId(req.params.id);
+  const _id = parseId(String(req.params.id));
   if (!_id) return res.status(404).json({ message: "Studio not found." });
   const db = await getDb();
   const studio = await db.collection("studios").findOne({ _id });
@@ -82,7 +82,7 @@ router.post("/", requireAuth, async (req, res) => {
 });
 
 router.put("/:id", requireAuth, async (req, res) => {
-  const _id = parseId(req.params.id);
+  const _id = parseId(String(req.params.id));
   if (!_id) return res.status(404).json({ message: "Studio not found." });
   const db = await getDb();
   const existing = await db.collection("studios").findOne({ _id });
@@ -97,7 +97,7 @@ router.put("/:id", requireAuth, async (req, res) => {
 });
 
 router.delete("/:id", requireAuth, async (req, res) => {
-  const _id = parseId(req.params.id);
+  const _id = parseId(String(req.params.id));
   if (!_id) return res.status(404).json({ message: "Studio not found." });
   const db = await getDb();
   const existing = await db.collection("studios").findOne({ _id });
