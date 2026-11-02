@@ -5,6 +5,7 @@ import { requireAuth } from "../auth.js";
 
 const router = Router();
 const toMinutes = (t: string) => {
+  if (t === "24:00") return 1440; // end of day
   const m = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(t);
   return m ? Number(m[1]) * 60 + Number(m[2]) : NaN;
 };
