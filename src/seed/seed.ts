@@ -32,15 +32,8 @@ type Seed = {
 
 const studios: Seed[] = [
   {
-    host: 0, title: "Whitewall Cyc Loft", category: "Photo Studio", hourlyRate: 48, securityDeposit: 150, maxCapacity: 10,
-    location: "Wynwood Arts District, Miami, FL", hero: "cyc", extra: ["lights"],
-    amenities: ["Infinity cyc wall", "Strobe kit", "Seamless paper rolls", "Makeup station", "Tethering cart", "Free Wi-Fi"],
-    overview: "A 1,400 sq ft white cyclorama with a poured-floor sweep, built for e-commerce, lookbooks and portrait days. Two Profoto-style strobe heads, softboxes, V-flats and a tethered capture cart are included in the hourly rate. Load-in is through a roll-up door at street level, so racks and furniture are no trouble.",
-    reviews: [[5, "Wall was spotless and the sweep is truly seamless. We shot 40 looks in one day."], [4, "Great light control. Parking nearby is the only tricky bit."], [5, "Host left a clear checklist, which made the turnover painless."]],
-  },
-  {
     host: 0, title: "Lumen Gallery Set", category: "Photo Studio", hourlyRate: 62, securityDeposit: 200, maxCapacity: 8,
-    location: "Garment District, New York, NY", hero: "lights", extra: ["cyc"],
+    location: "Garment District, New York, NY", hero: "lights", extra: ["carousel"],
     amenities: ["Period architecture backdrop", "Continuous lighting", "C-stands", "Steamer", "Laptop tether station"],
     overview: "A marble-floored corner of a converted townhouse with tall mouldings and warm daylight, ideal for editorial portraits and fashion stories. Bring your own camera; the stands, flags and modifiers on the shelf are yours to use.",
     reviews: [[5, "Looks like a magazine set the second you walk in."], [4, "Gorgeous space. Heating takes a while in winter."]],
