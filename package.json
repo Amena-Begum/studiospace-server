@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "tsx src/server.ts",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "seed": "tsx src/seed/seed.ts"
   },
   "author": "",
   "license": "ISC",
