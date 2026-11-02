@@ -2,10 +2,10 @@
   "name": "studiospace-server",
   "version": "1.0.0",
   "description": "StudioSpace REST API (Express, MongoDB, JWT cookies)",
-  "main": "src/server.ts",
+  "main": "src/local.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/local.ts",
+    "start": "tsx src/local.ts",
     "build": "tsc --noEmit",
     "seed": "tsx src/seed/seed.ts"
   },
