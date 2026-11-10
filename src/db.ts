@@ -12,11 +12,10 @@ export async function getDb(): Promise<Db> {
   db = client.db(process.env.DB_NAME || "studiospace");
   await Promise.all([
     db.collection("users").createIndex({ email: 1 }, { unique: true }),
-    db.collection("studios").createIndex({ ownerEmail: 1 }),
-    db.collection("studios").createIndex({ category: 1 }),
-    db.collection("bookings").createIndex({ studioId: 1, date: 1 }),
-    db.collection("bookings").createIndex({ userEmail: 1 }),
-    db.collection("bookings").createIndex({ hostEmail: 1 }),
+    db.collection("events").createIndex({ eventDate: 1 }),
+    db.collection("events").createIndex({ creatorEmail: 1 }),
+    db.collection("joins").createIndex({ eventId: 1, userEmail: 1 }, { unique: true }),
+    db.collection("joins").createIndex({ userEmail: 1, eventDate: 1 }),
   ]);
   return db;
 }

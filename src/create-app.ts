@@ -2,8 +2,8 @@ import express, { type NextFunction, type Request, type Response } from "express
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.js";
-import studioRoutes from "./routes/studios.js";
-import bookingRoutes from "./routes/bookings.js";
+import eventRoutes from "./routes/events.js";
+import joinRoutes from "./routes/joins.js";
 
 export function createApp() {
   const app = express();
@@ -13,10 +13,10 @@ export function createApp() {
   app.use(express.json({ limit: "100kb" }));
   app.use(cookieParser());
 
-  app.get("/", (_req, res) => res.json({ name: "StudioSpace API", status: "ok" }));
+  app.get("/", (_req, res) => res.json({ name: "Mohalla Events API", status: "ok" }));
   app.use("/api/auth", authRoutes);
-  app.use("/api/studios", studioRoutes);
-  app.use("/api/bookings", bookingRoutes);
+  app.use("/api/events", eventRoutes);
+  app.use("/api/joins", joinRoutes);
 
   app.use((_req, res) => res.status(404).json({ message: "Route not found." }));
   app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
