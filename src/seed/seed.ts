@@ -74,9 +74,12 @@ const events = [
 
 const db = await getDb();
 
-// This API now serves the events platform, so earlier-studio data is cleared along with the old demo accounts.
-await Promise.all([db.collection("studios").drop().catch(() => {}), db.collection("bookings").drop().catch(() => {})]);
-await db.collection("users").deleteMany({ email: { $regex: "@studiospace\\.app$" } });
+// The studio-era collections and demo accounts are only removed when asked for: `npm run seed -- --clean-legacy`.
+if (process.argv.includes("--clean-legacy")) {
+  await Promise.all([db.collection("studios").drop().catch(() => {}), db.collection("bookings").drop().catch(() => {})]);
+  await db.collection("users").deleteMany({ email: { $regex: "@studiospace\\.app$" } });
+  console.log("Removed the old studio and booking data and demo accounts.");
+}
 
 const hash = await bcrypt.hash(password, 10);
 for (const p of people) {
