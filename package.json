@@ -1,7 +1,7 @@
 {
   "name": "studiospace-server",
   "version": "1.0.0",
-  "description": "StudioSpace REST API (Express, MongoDB, JWT cookies)",
+  "description": "Mohalla Events REST API (Express, MongoDB, JWT cookies)",
   "main": "src/local.ts",
   "scripts": {
     "dev": "tsx watch src/local.ts",
