@@ -13,7 +13,7 @@ declare module "express-serve-static-core" {
   }
 }
 
-const COOKIE = "studiospace_token";
+const COOKIE = "mohalla_token";
 const isProd = () => process.env.NODE_ENV === "production";
 
 function secret(): string {
