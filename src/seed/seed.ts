@@ -2,6 +2,7 @@ import "dotenv/config";
 import bcrypt from "bcryptjs";
 import { readFileSync } from "node:fs";
 import { getDb } from "../db.js";
+import { todayISO } from "../dates.js";
 
 const images = JSON.parse(readFileSync(new URL("./images.json", import.meta.url), "utf8")) as Record<string, { url: string }>;
 const img = (k: string) => images[k].url;
@@ -9,122 +10,93 @@ const img = (k: string) => images[k].url;
 const password = process.env.SEED_PASSWORD;
 if (!password) throw new Error("Set SEED_PASSWORD in .env to create the demo accounts.");
 
-const hosts = [
-  { name: "Mira Halloran", email: "mira.host@studiospace.app", photoURL: "https://api.dicebear.com/9.x/notionists/svg?seed=MiraHalloran&backgroundColor=f1d9c4" },
-  { name: "Teo Okafor", email: "teo.host@studiospace.app", photoURL: "https://api.dicebear.com/9.x/notionists/svg?seed=TeoOkafor&backgroundColor=c9dcd0" },
+const avatar = (seed: string, bg: string) => `https://api.dicebear.com/9.x/notionists/svg?seed=${seed}&backgroundColor=${bg}`;
+const people = [
+  { name: "Amina Rahman", email: "amina.organiser@mohalla.app", photoURL: avatar("AminaRahman", "f1d9c4") },
+  { name: "Rafi Chowdhury", email: "rafi.organiser@mohalla.app", photoURL: avatar("RafiChowdhury", "c9dcd0") },
+  { name: "Tasnim Akter", email: "tasnim.volunteer@mohalla.app", photoURL: avatar("TasnimAkter", "d5d3ec") },
 ];
-const guest = { name: "Jun Aldana", email: "jun.guest@studiospace.app", photoURL: "https://api.dicebear.com/9.x/notionists/svg?seed=JunAldana&backgroundColor=d5d3ec" };
 
-const reviewers = ["Priya N.", "Daniel R.", "Ife A.", "Lucía M.", "Sam K.", "Hanna V."];
-const mkReviews = (rows: [number, string][]) =>
-  rows.map(([rating, comment], i) => ({
-    name: reviewers[i % reviewers.length],
-    rating,
-    comment,
-    date: new Date(Date.UTC(2026, 8 - i, 10 + i)).toISOString().slice(0, 10),
-  }));
-const avg = (r: { rating: number }[]) => Math.round((r.reduce((s, x) => s + x.rating, 0) / r.length) * 10) / 10;
-
-type Seed = {
-  host: 0 | 1; title: string; category: string; hourlyRate: number; securityDeposit: number; maxCapacity: number;
-  location: string; hero: string; extra: string[]; amenities: string[]; overview: string; reviews: [number, string][];
+// Dates are set relative to today (Dhaka time) so every seeded event is upcoming whenever the seed is run.
+const inDays = (n: number) => {
+  const d = new Date(`${todayISO()}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
 };
 
-const studios: Seed[] = [
+const events = [
   {
-    host: 0, title: "Lumen Gallery Set", category: "Photo Studio", hourlyRate: 62, securityDeposit: 200, maxCapacity: 8,
-    location: "Garment District, New York, NY", hero: "lights", extra: ["carousel"],
-    amenities: ["Period architecture backdrop", "Continuous lighting", "C-stands", "Steamer", "Laptop tether station"],
-    overview: "A marble-floored corner of a converted townhouse with tall mouldings and warm daylight, ideal for editorial portraits and fashion stories. Bring your own camera; the stands, flags and modifiers on the shelf are yours to use.",
-    reviews: [[5, "Looks like a magazine set the second you walk in."], [4, "Gorgeous space. Heating takes a while in winter."]],
+    by: 0, title: "Winter Clothes Distribution – Mirpur 10, Dhaka", eventType: "Donation", image: "clothes", days: 9,
+    location: "Mirpur 10 Roundabout, Dhaka",
+    description: "We are handing out warm sweaters, shawls and socks to children and elders from the neighbourhood madrasas and nearby slums. Bring a bag of clean, wearable winter clothes or come early to help us sort and pack. We start sorting at 8 am and distribute from 10 am.",
   },
   {
-    host: 1, title: "Carousel Court Set", category: "Photo Studio", hourlyRate: 38, securityDeposit: 120, maxCapacity: 12,
-    location: "Shibuya, Tokyo, Japan", hero: "carousel", extra: ["backlot"],
-    amenities: ["Outdoor styled set", "Props closet", "Changing room", "Power outlets on every wall", "Free Wi-Fi"],
-    overview: "A whitewashed courtyard set with a vintage carousel, arched windows and a tiny conservatory, rentable by the hour for wedding styling, maternity portraits and campaign work. A weather-cover plan is included, so rain days can still run.",
-    reviews: [[5, "Our bridal shoot felt like a storybook."], [5, "Props closet was a happy surprise."], [4, "Lovely, but book early for golden hour."]],
+    by: 1, title: "Blanket Distribution for the Needy – Mohammadpur, Dhaka", eventType: "Donation", image: "blanket", days: 14,
+    location: "Town Hall Bazar, Mohammadpur, Dhaka",
+    description: "Cold nights are hard on people who sleep outdoors. Volunteers will walk the Mohammadpur lanes after dark, handing blankets to rickshaw pullers, street vendors and families without a warm bed. Each team gets a route map and a list of blankets to carry.",
   },
   {
-    host: 1, title: "Rustboard Backlot", category: "Photo Studio", hourlyRate: 34, securityDeposit: 100, maxCapacity: 10,
-    location: "Koenji, Tokyo, Japan", hero: "backlot", extra: ["carousel"],
-    amenities: ["Covered shooting bay", "Vintage furniture", "Bike and prop rail", "Power outlets", "Free Wi-Fi"],
-    overview: "An open-front workshop bay dressed as a lived-in garage apartment, with timber trusses, a retro fridge and a bicycle. It works for lifestyle brands, music videos and cinematic stills.",
-    reviews: [[4, "Textured, characterful and quiet in the mornings."], [4, "Great for lifestyle content. Lots of natural light."]],
+    by: 0, title: "Buriganga Riverside Cleanup Drive", eventType: "Cleanup", image: "beach", days: 18,
+    location: "Sadarghat River Bank, Old Dhaka",
+    description: "Join us for a morning of picking plastic and litter from the Sadarghat river bank. Gloves, grabbers and bags are provided. We will weigh and sort what we collect, then share a simple breakfast together. Wear shoes you do not mind getting muddy.",
   },
   {
-    host: 0, title: "Greenroom Stage A", category: "Film Stage", hourlyRate: 85, securityDeposit: 400, maxCapacity: 14,
-    location: "Burbank, Los Angeles, CA", hero: "greenroom", extra: ["chroma"],
-    amenities: ["Chroma green wall", "Key and fill LED panels", "Green room lounge", "Teleprompter", "Cable run to control desk", "Free Wi-Fi"],
-    overview: "A dressed green-screen set with a velvet lounge in front, made for shows, web series and talk formats. LED panels are pre-rigged and the audio drop to the control desk is ready, so you can start rolling in ten minutes.",
-    reviews: [[5, "We recorded three episodes before lunch. Everything just worked."], [5, "Clean key, no spill, great crew-friendly layout."], [4, "Wish there was a second restroom, otherwise perfect."]],
+    by: 2, title: "Monsoon Tree Plantation – Hatirjheel Lakefront", eventType: "Plantation", image: "plant", days: 26,
+    location: "Hatirjheel Lakefront, Dhaka",
+    description: "Help us plant 200 native saplings, including neem, krishnachura and jarul, along the Hatirjheel walkway. A forestry student team will show everyone how to plant and stake a sapling, and each family can adopt one tree to check on through the year.",
   },
   {
-    host: 1, title: "Chroma Bay Stage", category: "Film Stage", hourlyRate: 110, securityDeposit: 600, maxCapacity: 20,
-    location: "Cologne, Germany", hero: "chroma", extra: ["greenroom"],
-    amenities: ["Full green cyc", "Lighting grid", "Camera dolly", "Blackout curtains", "Crew lounge", "Loading dock"],
-    overview: "A teaching-grade sound stage with a lighting grid, a floor that takes a dolly and a wall that takes a full-body key. A good fit for student films, short-form ads and VFX plates. Rental includes a studio manager on site.",
-    reviews: [[5, "Honest pricing, flexible grid and a very patient manager."], [4, "Big enough for our crew of 15."]],
+    by: 1, title: "Free Health Camp – Dhankora, Manikganj", eventType: "Health Camp", image: "health", days: 33,
+    location: "Girish Institute, Dhankora, Manikganj",
+    description: "A one-day camp offering free blood pressure, blood sugar and eye checks, plus basic medicines and nutrition advice for mothers and children. We need volunteers for registration, queue help, and walking elderly visitors between tables.",
   },
   {
-    host: 0, title: "Roundtable Podcast Room", category: "Podcast Lounge", hourlyRate: 28, securityDeposit: 60, maxCapacity: 6,
-    location: "Austin, TX", hero: "podroom", extra: ["podmics"],
-    amenities: ["Four-mic round table", "Acoustic panels", "Mixer with multitrack recording", "Video camera hookup", "Free Wi-Fi"],
-    overview: "A treated room with a six-seat round table, four broadcast microphones with boom arms and a control corner for the producer. Multitrack recording is included, and the walls are tuned for a short decay so speech stays clear.",
-    reviews: [[5, "Our audio was clean from the first take."], [5, "Comfortable chairs, so long episodes were no problem."], [4, "Easy booking and great sound."]],
+    by: 2, title: "Community Food Packing Day – Uttara", eventType: "Food Drive", image: "food", days: 41,
+    location: "Sector 7 Community Centre, Uttara, Dhaka",
+    description: "Together we will pack 500 family food bags with rice, lentils, oil and salt for households who lost income this season. Packing runs in two-hour shifts, so you can join for one or stay for both. Donations of dry food are welcome at the door.",
   },
   {
-    host: 1, title: "Mic Row Lounge", category: "Podcast Lounge", hourlyRate: 24, securityDeposit: 50, maxCapacity: 5,
-    location: "Lisbon, Portugal", hero: "podmics", extra: ["podroom"],
-    amenities: ["Glass-wall booth", "Remote guest hookup", "Pop filters and shock mounts", "Refreshments", "Free Wi-Fi"],
-    overview: "A glass-fronted studio with a wooden table and a separate producer desk, so a remote guest can join without echo. A quiet street, good daylight and tea on request.",
-    reviews: [[4, "Cozy and quiet; the remote guest setup is smart."], [5, "Best value room I have rented."]],
+    by: 0, title: "Brickfield Families Winter Support – Savar", eventType: "Donation", image: "brick", days: 52,
+    location: "Brickfield Road, Savar, Dhaka",
+    description: "Families living at the brickfields have few warm clothes for the cold months. We are collecting jackets and children's sweaters, and we need drivers and helpers to carry them out to Savar and distribute them family by family.",
   },
   {
-    host: 0, title: "Control Room One", category: "Music Suite", hourlyRate: 95, securityDeposit: 300, maxCapacity: 8,
-    location: "Nashville, TN", hero: "control", extra: ["console"],
-    amenities: ["Analog console", "Outboard racks", "Live room", "Vintage amps", "Isolation booth", "Lounge and kitchenette"],
-    overview: "A warm brick-and-wood tracking room with a large-format console, a tuned live room and an iso booth. An in-house engineer is available by the session. It suits full-band tracking, vocal comping and mixdowns.",
-    reviews: [[5, "The drums sound huge in the live room."], [5, "Engineer knew the console inside out."], [5, "Left with a finished EP."]],
+    by: 1, title: "Saint Martin's Island Shoreline Cleanup", eventType: "Cleanup", image: "shore", days: 64,
+    location: "Saint Martin's Island, Teknaf, Cox's Bazar",
+    description: "A shoreline cleanup with local fishers, students and coast guard volunteers. We will fill sacks with washed-up plastic, nets and bottles along the east beach, then record what we find so the island council can plan better waste collection.",
   },
   {
-    host: 1, title: "Grand Console Suite", category: "Music Suite", hourlyRate: 120, securityDeposit: 500, maxCapacity: 10,
-    location: "Berlin, Germany", hero: "console", extra: ["control"],
-    amenities: ["Hybrid console", "Studio monitors", "Atmos-ready control room", "Piano", "Vocal booth", "Mastering chain"],
-    overview: "A high-ceilinged mixing and mastering suite with a hybrid console, symmetrical room treatment and a grand piano next door. Quiet, accurate and ready for album sessions.",
-    reviews: [[5, "Monitoring is brutally honest, which is exactly what I want."], [4, "Pricey but worth it for final mixes."]],
-  },
-  {
-    host: 0, title: "Paper & Print Atelier", category: "Workshop", hourlyRate: 22, securityDeposit: 40, maxCapacity: 12,
-    location: "Portland, OR", hero: "atelier", extra: [],
-    amenities: ["Large work tables", "Wall pin boards", "Drying racks", "North-facing windows", "Sink", "Easels"],
-    overview: "A sunlit studio with big tables, pin walls and a drying rack, run as a shared workshop space for illustrators, printmakers and small classes. Good ventilation and a deep sink make messy work easy.",
-    reviews: [[5, "Perfect for our weekend print club."], [4, "Bright, roomy and tidy."]],
+    by: 2, title: "Campus Plantation Rally and Tree Fair", eventType: "Plantation", image: "rally", days: 78,
+    location: "Syed Nazrul Islam College, Mymensingh",
+    description: "A student-led walk through the town followed by a tree fair with free fruit and shade saplings. Volunteers help carry banners, hand out saplings and explain to families how to look after them through the first dry season.",
   },
 ];
 
-async function main() {
-  const db = await getDb();
-  const hash = await bcrypt.hash(password!, 10);
-  for (const u of [...hosts, guest]) {
-    await db.collection("users").updateOne({ email: u.email }, { $set: { ...u, passwordHash: hash }, $setOnInsert: { createdAt: new Date() } }, { upsert: true });
-  }
-  const demoOwners = hosts.map((h) => h.email);
-  await db.collection("studios").deleteMany({ ownerEmail: { $in: demoOwners } });
-  const now = Date.now();
-  const docs = studios.map((s, i) => {
-    const reviews = mkReviews(s.reviews);
-    const h = hosts[s.host];
-    return {
-      title: s.title, category: s.category, hourlyRate: s.hourlyRate, securityDeposit: s.securityDeposit, maxCapacity: s.maxCapacity,
-      location: s.location, imageUrl: img(s.hero), gallery: [img(s.hero), ...s.extra.map(img)], amenities: s.amenities, overview: s.overview,
-      rating: avg(reviews), reviews,
-      ownerEmail: h.email, ownerName: h.name, ownerPhoto: h.photoURL,
-      createdAt: new Date(now - i * 36 * 3600 * 1000),
-    };
-  });
-  await db.collection("studios").insertMany(docs);
-  console.log(`Seeded ${docs.length} studios and ${hosts.length + 1} demo accounts.`);
-  process.exit(0);
+const db = await getDb();
+
+// This API now serves the events platform, so earlier-studio data is cleared along with the old demo accounts.
+await Promise.all([db.collection("studios").drop().catch(() => {}), db.collection("bookings").drop().catch(() => {})]);
+await db.collection("users").deleteMany({ email: { $regex: "@studiospace\\.app$" } });
+
+const hash = await bcrypt.hash(password, 10);
+for (const p of people) {
+  await db.collection("users").updateOne({ email: p.email }, { $set: { ...p, passwordHash: hash }, $setOnInsert: { createdAt: new Date() } }, { upsert: true });
 }
-main().catch((e) => { console.error(e); process.exit(1); });
+
+// Re-seeding replaces only the seeded events; events created through the site by real users are kept.
+await db.collection("joins").deleteMany({ creatorEmail: { $in: people.map((p) => p.email) } });
+await db.collection("events").deleteMany({ creatorEmail: { $in: people.map((p) => p.email) } });
+const docs = events.map((e) => ({
+  title: e.title,
+  description: e.description,
+  eventType: e.eventType,
+  thumbnail: img(e.image),
+  location: e.location,
+  eventDate: inDays(e.days),
+  creatorEmail: people[e.by].email,
+  creatorName: people[e.by].name,
+  createdAt: new Date(),
+}));
+await db.collection("events").insertMany(docs);
+console.log(`Seeded ${docs.length} upcoming events and ${people.length} demo accounts.`);
+process.exit(0);

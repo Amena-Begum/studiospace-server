@@ -1,82 +1,74 @@
 {
- "lights": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/2018-Pulitzer-Prizes-photo-studio.jpg/1920px-2018-Pulitzer-Prizes-photo-studio.jpg",
-  "title": "2018-Pulitzer-Prizes-photo-studio.jpg",
-  "author": "Fuzheado",
-  "license": "CC0",
-  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "source": "https://commons.wikimedia.org/wiki/File:2018-Pulitzer-Prizes-photo-studio.jpg"
- },
- "carousel": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Ease_Studio%27s_%22South_Side_Park%22%2C_a_decor_for_photoshoots_3.jpg/1920px-Ease_Studio%27s_%22South_Side_Park%22%2C_a_decor_for_photoshoots_3.jpg",
-  "title": "Ease Studio's \"South Side Park\", a decor for photoshoots 3.jpg",
-  "author": "Syced",
-  "license": "CC0",
-  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "source": "https://commons.wikimedia.org/wiki/File:Ease_Studio%27s_%22South_Side_Park%22,_a_decor_for_photoshoots_3.jpg"
- },
- "backlot": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Ease_Studio%27s_%22South_Side_Park%22%2C_a_decor_for_photoshoots_6.jpg/1920px-Ease_Studio%27s_%22South_Side_Park%22%2C_a_decor_for_photoshoots_6.jpg",
-  "title": "Ease Studio's \"South Side Park\", a decor for photoshoots 6.jpg",
-  "author": "Syced",
-  "license": "CC0",
-  "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "source": "https://commons.wikimedia.org/wiki/File:Ease_Studio%27s_%22South_Side_Park%22,_a_decor_for_photoshoots_6.jpg"
- },
- "greenroom": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Channel_ATV_Green_Screen_Studio.jpg/1920px-Channel_ATV_Green_Screen_Studio.jpg",
-  "title": "Channel ATV Green Screen Studio.jpg",
-  "author": "Allen Harriet Media",
+ "clothes": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Distribution_of_winter_clothes_to_the_orphans_by_Needy_Foundstion.jpg/1920px-Distribution_of_winter_clothes_to_the_orphans_by_Needy_Foundstion.jpg",
+  "title": "Distribution of winter clothes to the orphans by Needy Foundstion.jpg",
+  "author": "Makhan1971",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Channel_ATV_Green_Screen_Studio.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Distribution_of_winter_clothes_to_the_orphans_by_Needy_Foundstion.jpg"
  },
- "chroma": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/MedienwerkstattGreenbox.JPG/1920px-MedienwerkstattGreenbox.JPG",
-  "title": "MedienwerkstattGreenbox.JPG",
-  "author": "Sandra Becker",
+ "blanket": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Blanket_Distribution_At_Kamalapur_Railway_Station_By_Sharmin_S._Murshid_2025-01-06_%28PID-0004220%29.jpg",
+  "title": "Blanket Distribution At Kamalapur Railway Station By Sharmin S. Murshid 2025-01-06 (PID-0004220).jpg",
+  "author": "Press Information Department",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Blanket_Distribution_At_Kamalapur_Railway_Station_By_Sharmin_S._Murshid_2025-01-06_(PID-0004220).jpg"
+ },
+ "shore": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Saint_Martin%27s_Island_Cleanup_Campaign_2025-02-12_%28PID-0003543%29.jpg",
+  "title": "Saint Martin's Island Cleanup Campaign 2025-02-12 (PID-0003543).jpg",
+  "author": "Press Information Department",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Saint_Martin%27s_Island_Cleanup_Campaign_2025-02-12_(PID-0003543).jpg"
+ },
+ "plant": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Ambassador_Earl_Miller_Planting_Tree_at_Shahbuddin_Park_Gulshan%2C_Dhaka_%2850340682597%29.jpg/1920px-Ambassador_Earl_Miller_Planting_Tree_at_Shahbuddin_Park_Gulshan%2C_Dhaka_%2850340682597%29.jpg",
+  "title": "Ambassador Earl Miller Planting Tree at Shahbuddin Park Gulshan, Dhaka (50340682597).jpg",
+  "author": "U.S. Embassy Dhaka from Bangladesh",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Ambassador_Earl_Miller_Planting_Tree_at_Shahbuddin_Park_Gulshan,_Dhaka_(50340682597).jpg"
+ },
+ "beach": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Beach_Cleaning_Volunteers.jpg/1920px-Beach_Cleaning_Volunteers.jpg",
+  "title": "Beach Cleaning Volunteers.jpg",
+  "author": "Debbie Foote",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Beach_Cleaning_Volunteers.jpg"
+ },
+ "health": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Afroza_Khanum_at_free_medical_camp%2C_Girish_Institute%2C_Dhankora%2C_Manikganj%2C_2026-08-29.jpg/1920px-Afroza_Khanum_at_free_medical_camp%2C_Girish_Institute%2C_Dhankora%2C_Manikganj%2C_2026-08-29.jpg",
+  "title": "Afroza Khanum at free medical camp, Girish Institute, Dhankora, Manikganj, 2026-08-29.jpg",
+  "author": "Press Information Department",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:Afroza_Khanum_at_free_medical_camp,_Girish_Institute,_Dhankora,_Manikganj,_2026-08-29.jpg"
+ },
+ "food": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/DHS_Secretary_Alejandro_Mayorkas_Volunteers_at_Capital_Area_Food_Bank_%2852519257457%29.jpg/1920px-DHS_Secretary_Alejandro_Mayorkas_Volunteers_at_Capital_Area_Food_Bank_%2852519257457%29.jpg",
+  "title": "DHS Secretary Alejandro Mayorkas Volunteers at Capital Area Food Bank (52519257457).jpg",
+  "author": "DHSgov",
+  "license": "Public domain",
+  "licenseUrl": "",
+  "source": "https://commons.wikimedia.org/wiki/File:DHS_Secretary_Alejandro_Mayorkas_Volunteers_at_Capital_Area_Food_Bank_(52519257457).jpg"
+ },
+ "brick": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Save_the_poor.JPG/1920px-Save_the_poor.JPG",
+  "title": "Save the poor.JPG",
+  "author": "Abdul atif",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:MedienwerkstattGreenbox.JPG"
+  "source": "https://commons.wikimedia.org/wiki/File:Save_the_poor.JPG"
  },
- "podroom": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/SPNN_Podcast_room.jpg/1920px-SPNN_Podcast_room.jpg",
-  "title": "SPNN Podcast room.jpg",
-  "author": "Myotus",
-  "license": "CC BY 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:SPNN_Podcast_room.jpg"
- },
- "podmics": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Podcast_Studio.jpg/1920px-Podcast_Studio.jpg",
-  "title": "Podcast Studio.jpg",
-  "author": "Ajcosta",
+ "rally": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Syed_Nazrul_College_Tree_Plantation_Rally.JPG/1920px-Syed_Nazrul_College_Tree_Plantation_Rally.JPG",
+  "title": "Syed Nazrul College Tree Plantation Rally.JPG",
+  "author": "Anup Sadi",
   "license": "CC BY-SA 4.0",
   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Podcast_Studio.jpg"
- },
- "control": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/ARC_Studio_Control_Room_%28rear_view%29.jpg/1920px-ARC_Studio_Control_Room_%28rear_view%29.jpg",
-  "title": "ARC Studio Control Room (rear view).jpg",
-  "author": "Marco Tucconi",
-  "license": "CC BY-SA 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:ARC_Studio_Control_Room_(rear_view).jpg"
- },
- "console": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/MUSIC_FOR_MUSIC_STUDIO.jpg/1920px-MUSIC_FOR_MUSIC_STUDIO.jpg",
-  "title": "MUSIC FOR MUSIC STUDIO.jpg",
-  "author": "Mfmbackoffice",
-  "license": "CC BY 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:MUSIC_FOR_MUSIC_STUDIO.jpg"
- },
- "atelier": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Ann_Gollifer%27s_studio.jpg/1920px-Ann_Gollifer%27s_studio.jpg",
-  "title": "Ann Gollifer's studio.jpg",
-  "author": "Ann Gollifer",
-  "license": "CC BY-SA 4.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-  "source": "https://commons.wikimedia.org/wiki/File:Ann_Gollifer%27s_studio.jpg"
+  "source": "https://commons.wikimedia.org/wiki/File:Syed_Nazrul_College_Tree_Plantation_Rally.JPG"
  }
 }
